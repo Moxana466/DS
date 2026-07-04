@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arithmetic Expression Evaluator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-icon">&#8721;</div>
+      <div>
+        <h1>Arithmetic Expression Evaluator</h1>
+        <p class="subtitle">Compiler Design Mini Project &mdash; Lexical Analysis &middot; Syntax Validation &middot; Postfix Conversion &middot; Evaluation</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="card input-card">
+      <h2 class="card-title">Expression Input</h2>
+      <div class="input-row">
+        <input type="text" id="exprInput"
+          placeholder="Enter expression, e.g. (5+3)*2 - 8/4"
+          autocomplete="off" spellcheck="false" />
+      </div>
+      <div class="btn-row">
+        <button id="btnAnalyze" class="btn btn-primary">&#9881; Analyze</button>
+        <button id="btnExample" class="btn btn-secondary">&#128194; Load Example</button>
+        <button id="btnClear"   class="btn btn-ghost">&times; Clear</button>
+      </div>
+    </section>
+
+    <section class="card diagram-card" id="blockDiagramSection">
+      <h2 class="card-title">Compiler Phase Block Diagram</h2>
+      <div class="block-diagram">
+        <div class="block-phase" id="bp0">Input Expression</div>
+        <div class="block-arrow">&#8595;</div>
+        <div class="block-phase" id="bp1">Lexical Analyzer</div>
+        <div class="block-arrow">&#8595;</div>
+        <div class="block-phase" id="bp2">Syntax Analyzer</div>
+        <div class="block-arrow">&#8595;</div>
+        <div class="block-phase" id="bp3">Infix &#8594; Postfix Converter</div>
+        <div class="block-arrow">&#8595;</div>
+        <div class="block-phase" id="bp4">Expression Evaluator</div>
+        <div class="block-arrow">&#8595;</div>
+        <div class="block-phase" id="bp5">Final Result</div>
+      </div>
+    </section>
+
+    <section class="card diagram-card">
+      <h2 class="card-title">Process Flowchart</h2>
+      <div class="flowchart-wrap">
+        <svg id="flowchartSVG" viewBox="0 0 320 780" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </section>
+
+    <div class="results-grid" id="resultsGrid" style="display:none;">
+
+      <section class="card result-card">
+        <h2 class="card-title">1 &middot; Lexical Analysis</h2>
+        <p class="card-desc">Each character group is classified into a token type.</p>
+        <div class="table-wrap">
+          <table id="tokenTable">
+            <thead><tr><th>#</th><th>Token</th><th>Type</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card result-card">
+        <h2 class="card-title">2 &middot; Syntax Analysis</h2>
+        <p class="card-desc">Validates balanced parentheses and legal operator usage.</p>
+        <div id="syntaxResult" class="syntax-box"></div>
+        <ul id="syntaxChecks" class="syntax-checks"></ul>
+      </section>
+
+      <section class="card result-card">
+        <h2 class="card-title">3 &middot; Infix &#8594; Postfix Conversion</h2>
+        <p class="card-desc">Shunting Yard Algorithm produces Reverse Polish Notation.</p>
+        <div class="postfix-display" id="postfixDisplay"></div>
+        <h3 class="sub-heading">Operator Stack Trace</h3>
+        <div class="table-wrap">
+          <table id="stackTable">
+            <thead>
+              <tr><th>Step</th><th>Token</th><th>Action</th><th>Stack</th><th>Output</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card result-card">
+        <h2 class="card-title">4 &middot; Expression Evaluation</h2>
+        <p class="card-desc">Stack-based evaluation of the postfix expression.</p>
+        <div class="table-wrap">
+          <table id="evalTable">
+            <thead>
+              <tr><th>Step</th><th>Token</th><th>Action</th><th>Stack</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="result-box" id="finalResult"></div>
+      </section>
+
+      <section class="card result-card span-full">
+        <h2 class="card-title">Stack Visualization</h2>
+        <p class="card-desc">Step through the operator and evaluation stacks visually.</p>
+        <div class="stack-vis-row">
+          <div class="stack-vis-block">
+            <h3 class="sub-heading">Operator Stack (Infix&#8594;Postfix)</h3>
+            <canvas id="opStackCanvas" width="280" height="280"></canvas>
+          </div>
+          <div class="stack-vis-block">
+            <h3 class="sub-heading">Evaluation Stack (Postfix Eval)</h3>
+            <canvas id="evalStackCanvas" width="280" height="280"></canvas>
+          </div>
+        </div>
+        <div class="stack-controls">
+          <button id="btnPrevStep" class="btn btn-secondary">&#9664; Prev</button>
+          <span id="stepLabel" class="step-label">Step 0 / 0</span>
+          <button id="btnNextStep" class="btn btn-secondary">Next &#9654;</button>
+          <button id="btnAutoPlay" class="btn btn-primary">&#9654; Auto Play</button>
+        </div>
+      </section>
+
+      <section class="card result-card span-full">
+        <h2 class="card-title">Expression Tree</h2>
+        <p class="card-desc">Binary tree built from the postfix expression.</p>
+        <div class="tree-wrap">
+          <canvas id="treeCanvas"></canvas>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Arithmetic Expression Evaluator &mdash; Compiler Design Mini Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
