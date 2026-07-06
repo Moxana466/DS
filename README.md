@@ -1,7 +1,1 @@
-## 📜 Machine Learning Certificate
-
-This certificate recognizes the successful completion of the **Explore Machine Learning Using Python** course.
-
-<p align="center">
-  <img src="images/ds_ccertificate_explore_machine_learning_using_python.jpeg" alt="Explore Machine Learning Using Python Certificate" width="800">
-</p>
+<img src: <img width="1600" height="1131" alt="ds_ccertificate_explore_machine_learning_using_python" src="https://github.com/user-attachments/assets/2c3e0b60-2835-43ac-a3e8-340c2dfafe25" />
